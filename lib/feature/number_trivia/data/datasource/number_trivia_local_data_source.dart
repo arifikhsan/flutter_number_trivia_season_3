@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_number_trivia_season_3/core/constant/number_trivia_constant.dart';
 import 'package:flutter_number_trivia_season_3/core/exception/cache_exception.dart';
 import 'package:flutter_number_trivia_season_3/feature/number_trivia/data/model/number_trivia_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class NumberTriviaLocalDatasource {
@@ -11,6 +12,7 @@ abstract class NumberTriviaLocalDatasource {
   Future<NumberTriviaModel> getLastNumberTrivia();
 }
 
+@Injectable(as: NumberTriviaLocalDatasource)
 class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDatasource {
   final SharedPreferences sharedPreferences;
 

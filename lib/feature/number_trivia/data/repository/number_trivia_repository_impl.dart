@@ -10,9 +10,11 @@ import 'package:flutter_number_trivia_season_3/feature/number_trivia/domain/enti
 import 'package:flutter_number_trivia_season_3/core/failure/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_number_trivia_season_3/feature/number_trivia/domain/repository/number_trivia_repository.dart';
+import 'package:injectable/injectable.dart';
 
 typedef Future<NumberTrivia> _ConcreteOrRandomChooser();
 
+@Injectable(as: NumberTriviaRepository)
 class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   final NumberTriviaRemoteDatasource remoteDatasource;
   final NumberTriviaLocalDatasource localDatasource;

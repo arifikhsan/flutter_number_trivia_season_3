@@ -3,13 +3,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_number_trivia_season_3/core/exception/server_exception.dart';
 import 'package:flutter_number_trivia_season_3/feature/number_trivia/data/model/number_trivia_model.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' show Client;
+import 'package:injectable/injectable.dart';
 
 abstract class NumberTriviaRemoteDatasource {
   Future<NumberTriviaModel> getConcreteNumberTrivia(int number);
   Future<NumberTriviaModel> getRandomNumberTrivia();
 }
 
+@Injectable(as: NumberTriviaRemoteDatasource)
 class NumberTriviaRemoteDataSourceImpl implements NumberTriviaRemoteDatasource {
   final Client client;
 

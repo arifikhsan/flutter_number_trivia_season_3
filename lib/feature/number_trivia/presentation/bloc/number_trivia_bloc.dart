@@ -12,19 +12,21 @@ import 'package:flutter_number_trivia_season_3/feature/number_trivia/domain/enti
 import 'package:flutter_number_trivia_season_3/feature/number_trivia/domain/usecase/get_concrete_number_trivia_usecase.dart';
 import 'package:flutter_number_trivia_season_3/feature/number_trivia/domain/usecase/get_random_number_trivia_usecase.dart';
 import 'package:flutter_number_trivia_season_3/util/input_converter.dart';
+import 'package:injectable/injectable.dart';
 
 part 'number_trivia_event.dart';
 part 'number_trivia_state.dart';
 
+@injectable
 class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   final GetConcreteNumberTriviaUsecase getConcreteNumberTrivia;
   final GetRandomNumberTriviaUsecase getRandomNumberTrivia;
   final InputConverter inputConverter;
 
   NumberTriviaBloc({
-    this.getConcreteNumberTrivia,
-    this.getRandomNumberTrivia,
-    this.inputConverter,
+    @required this.getConcreteNumberTrivia,
+    @required this.getRandomNumberTrivia,
+    @required this.inputConverter,
   })  : assert(getConcreteNumberTrivia != null),
         assert(getRandomNumberTrivia != null),
         assert(inputConverter != null);
