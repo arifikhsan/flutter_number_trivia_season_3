@@ -94,6 +94,7 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
         break;
       case CacheFailure:
         return 'Cache Failure';
+        break;
       default:
         return 'Unexpected Failure';
     }
