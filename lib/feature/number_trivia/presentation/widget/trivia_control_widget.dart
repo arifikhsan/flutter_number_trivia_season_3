@@ -17,35 +17,69 @@ class _TriviaControlWidgetState extends State<TriviaControlWidget> {
       margin: EdgeInsets.only(top: 16),
       child: Form(
         key: formKey,
-        child: Row(
+        child: Column(
           children: <Widget>[
-            Expanded(
-              child: TextFormField(
-                controller: textEditingController,
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  return value.isEmpty ? 'Please enter some number' : null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'Enter a number...',
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    controller: textEditingController,
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      return value.isEmpty ? 'Please enter some number' : null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Enter a number...',
+                    ),
+                  ),
                 ),
+                SizedBox(
+                  width: 16,
+                ),
+                RaisedButton.icon(
+                  onPressed: () {
+                    formKey.currentState.validate();
+                    BlocProvider.of<NumberTriviaBloc>(context).add(
+                      GetTriviaForConcreteNumber(textEditingController.text),
+                    );
+                  },
+                  icon: Icon(Icons.send),
+                  label: Text('Send'),
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 8),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton.icon(
+                      onPressed: () {
+                        BlocProvider.of<NumberTriviaBloc>(context).add(
+                          GetTriviaForRandomNumber(),
+                        );
+                      },
+                      icon: Icon(Icons.cloud_queue),
+                      label: Text('Random'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                    child: RaisedButton.icon(
+                      onPressed: () {
+                        formKey.currentState.reset();
+                        BlocProvider.of<NumberTriviaBloc>(context).add(
+                          ResetTrivia(),
+                        );
+                      },
+                      icon: Icon(Icons.restore),
+                      label: Text('Reset'),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(
-              width: 16,
-            ),
-            RaisedButton.icon(
-              onPressed: () {
-                formKey.currentState.validate();
-                BlocProvider.of<NumberTriviaBloc>(context).add(
-                  GetTriviaForConcreteNumber(textEditingController.text),
-                );
-                // if (formKey.currentState.validate()) {
-                //   print(textEditingController.text);
-                // }
-              },
-              icon: Icon(Icons.send),
-              label: Text('Send'),
             ),
           ],
         ),

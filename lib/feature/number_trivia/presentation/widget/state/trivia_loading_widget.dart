@@ -5,7 +5,9 @@ class TriviaLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlueBoardWidget(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator(
+        backgroundColor: Colors.white,
+      ),
     );
   }
 }
